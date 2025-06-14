@@ -10,6 +10,7 @@
 #include "zygisk.hpp"
 #include "game.h"
 #include "log.h"
+#include "hook_loader.h"
 
 using zygisk::Api;
 using zygisk::AppSpecializeArgs;
@@ -51,6 +52,7 @@ private:
             enable_hack = true;
             game_data_dir = new char[strlen(app_data_dir) + 1];
             strcpy(game_data_dir, app_data_dir);
+            setup_il2cpp_hook(api);
 
 #if defined(__i386__)
             auto path = "zygisk/armeabi-v7a.so";
